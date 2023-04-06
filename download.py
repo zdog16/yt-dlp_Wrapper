@@ -3,8 +3,15 @@ from rich.console import Console
 from rich.prompt import Prompt
 import pyperclip
 import subprocess
+import argparse
 install()
 c = Console()
+
+def getArguments():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-f", "--format", action="store_true", help="Present more file format options")
+    args = parser.parse_args()
+    return args
 
 def menu(question, choices):
     curNumber = 1
@@ -20,7 +27,10 @@ def menu(question, choices):
             return choices[usr_input - 1]
 
 
+
+# MAIN PROGRAM START #
 c.print("[+] Youtube Video Downloader - V2")
+args = getArguments()
 clipboard = pyperclip.paste()
 if "youtube" in clipboard or "youtu'be" in clipboard:
     c.print("[+] URL Detected in Clipboard", style="green")
@@ -28,6 +38,9 @@ if "youtube" in clipboard or "youtu'be" in clipboard:
 else:
     URL = Prompt.ask("[+] Please Paste the URL you would like to download")
 
+if menu("[+] Would you like to use a custom Filename?", ["Yes", "No"]) == "Yes":
+    c.print("[+] Enter the Filename")
+    filename = input(">>")
 
 match menu("[+] What would you like to download?", ["Video Only", "Audio Only", "Both"]):
     case "Video Only":
@@ -40,14 +53,21 @@ match menu("[+] What would you like to download?", ["Video Only", "Audio Only", 
         download_video = True
         download_audio = True
 
-if menu("[+] Would you like to use a custom Filename?", ["Yes", "No"]) == "Yes":
-    c.print("[+] Enter the Filename")
-    filename = input(">>")
+
+if download_video and args.format:
+    video_format = menu("[+] Select the File Format for the Video File", ["avi", "flv", "gif", "mkv", "mov", "mp4", "webm"])
+else:
+    video_format = "mov"
+if download_audio and args.format:
+    audio_format = menu("[+] Selec the File Format for the Audio File", ["aac", "aiff", "alac", "flac", "m4a", "mka", "mp3", "ogg", "opus", "vorbis", "wav"])
+else:
+    audio_format = "wav"
+
 
 if download_video:
     command = ['yt-dlp', URL]
     command.append("--recode-video")
-    command.append("mov")
+    command.append(video_format)
     if filename != None:
         command.append("-o")
         command.append(filename)
@@ -57,7 +77,7 @@ if download_audio:
     command = ['yt-dlp', URL]
     command.append("-x")
     command.append("--audio-format")
-    command.append("wav")
+    command.append(audio_format)
     if filename != None:
         command.append("-o")
         command.append(filename)

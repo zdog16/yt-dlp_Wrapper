@@ -35,3 +35,8 @@ The file(s) will be deposited in the same directory that `download.py` is locate
 # Known Limitations/Quirks
 1. If you select to download both the Video and Audio the script will download the video twice. There is currently no known way to perform multiple re-encode operations on the same downloaded file.
 2. Videos will always be downloaded and converted to .mov files and audio extrations will always be encoded as .wav files. yt-dlp supports a wide range of formats, but this script currently does not give the user the option to change the format.
+
+# Roadmap
+- Add argument(s) for selecting different file formats for both Video and Audio - `IN PROGRESS`
+- Add argument(s) for downloading playlists
+- Add argument(s) for downloading videos in batches via .csv files

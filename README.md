@@ -3,7 +3,9 @@ New wrapper for a newer and better maintained fork of yt-download called yt-dlp.
 Python modules are not longer sufficent as yt-dlp requires FFMPEG and FFPROBE to transcode videos after download. See the dependencies section for instructions to install the the non-python dependencies.
 
 # Version Notes
-Created and tested in Python 3.10.0 on MacOS 13.0.1 running on M1 Sillicon.
+This Project is under Active Development. I recommend that you use code from the latest release as the latest commit may be untested and buggy. Releases will be tested before they are published.
+<br><br>
+Created and tested in Python 3.10.0 on MacOS 13.0.1 running on M1 Sillicon. If you have version related problem please create an issue and include all relavent software versions.
 
 # Dependencies
 You must have FFMPEG installed reencode videos during the download. The only working method of installing FFMPEG on my M1 macbook was to use [Homebrew](https://brew.sh/). You can run this command into terminal to do the installation automatically.

@@ -32,7 +32,7 @@ def menu(question, choices):
 c.print("[+] Youtube Video Downloader - V2")
 args = getArguments()
 clipboard = pyperclip.paste()
-if "youtube" in clipboard or "youtu'be" in clipboard:
+if "youtube" in clipboard or "youtu.be" in clipboard:
     c.print("[+] URL Detected in Clipboard", style="green")
     URL = clipboard
 else:

@@ -41,6 +41,8 @@ else:
 if menu("[+] Would you like to use a custom Filename?", ["Yes", "No"]) == "Yes":
     c.print("[+] Enter the Filename")
     filename = input(">>")
+else:
+    filename = None
 
 match menu("[+] What would you like to download?", ["Video Only", "Audio Only", "Both"]):
     case "Video Only":
